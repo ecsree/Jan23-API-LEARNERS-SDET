@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Jan23-API_LEARNERS-SDET</groupId>
+  <artifactId>Jan23-API_LEARNERS-SDET</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+   <dependencies>
+  <dependency>
+		<groupId>io.rest-assured</groupId>
+		<artifactId>rest-assured</artifactId>
+		<version>4.4.0</version>
+	</dependency>
+	<dependency>
+		<groupId>io.rest-assured</groupId>
+		<artifactId>json-path</artifactId>
+		<version>4.4.0</version>
+	</dependency>
+	<dependency>
+		<groupId>io.rest-assured</groupId>
+		<artifactId>json-schema-validator</artifactId>
+		<version>4.4.0</version>
+		</dependency>
+		<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+	
+	<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>6.10.4</version>
+</dependency>
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>6.10.4</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-cucumber6-jvm</artifactId>
+    <version>2.13.6</version>
+</dependency>
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-cucumber6-jvm</artifactId>
+    <version>2.13.6</version>
+</dependency>
+
+<dependency>
+	<groupId>junit</groupId>
+	<artifactId>junit</artifactId>
+	<version>4.13.2</version>
+	<scope>test</scope>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
+<dependency>
+    <groupId>tech.grasshopper</groupId>
+    <artifactId>extentreports-cucumber6-adapter</artifactId>
+    <version>2.15.0</version>
+</dependency>
+
+
+	  </dependencies>
+	<build>
+	  <plugins>
+	  <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<configuration>
+		<source>11</source>
+		<target>11</target>
+	</configuration>
+</plugin>
+
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>3.0.0-M5</version>
+	<configuration>
+		<systemProperties>
+			<property>
+				<name>allure.results.directory</name>
+				<value>${project.build.directory}/allure-results</value>
+			</property>
+			<property>
+				<name>allure.link.issue.pattern</name>
+				<value>https://example.org/issue/{}</value>
+			</property>
+			<property>
+				<name>allure.link.tms.pattern</name>
+				<value>https://example.org/tms/{}</value>
+			</property>
+		</systemProperties>
+		<testFailureIgnore>true</testFailureIgnore>
+		<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+						-Dcucumber.plugin="io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
+		</argLine>
+	</configuration>
+	<dependencies>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.7</version>
+		</dependency>
+	</dependencies>
+</plugin>
+	  </plugins>
+</build>  
+  
+</project>
