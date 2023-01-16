@@ -1,5 +1,8 @@
 package steps;
 
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +15,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
 public class StepDefinitions {
 	RequestSpecification request;
@@ -21,7 +27,9 @@ public class StepDefinitions {
 	int actualresponseCode;
 	public static int statuscode;
 	public static List<Integer> programIdList = new ArrayList<>();
-	
+	public static RequestSpecification res ;
+	public  ResponseSpecification resspec;
+	public  Response response;
 
 	@Given("API url {string}")
 	public void api_url(String url) {
@@ -75,5 +83,39 @@ public class StepDefinitions {
 		Assert.assertEquals(code, statuscode);
 	}
 	
+	@Given("User enter  endpoints")
+	public void user_enter_endpoints() 
+	{
+		//RestAssured.baseURI="https://lms-backend-service.herokuapp.com/lms";
+		res =	given().log().all().header("Content-Type","application/json");
+
+	}
+	@When("User call GetAllProgramAPI with Get HTTP method")
+	public void user_call_get_all_program_api_with_get_http_method() 
+	{
+		resspec = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
+		response=res.when().get("allPrograms").then().spec(resspec).extract().response();  
+	}
+	
+	@Then("response API call got success with status code {int}")
+	public void response_api_call_got_success_with_status_code(Integer int1) 
+	{
+		assertEquals(response.getStatusCode(),200);
+ 
+	}
+	@Then("validate the response header : {string} is {string}")
+	public void validate_the_response_header_is(String key, String value) {
+	   if(key == "Server")
+	   {
+		   String HeaderResponse= response.header(value);
+		   Assert.assertEquals("Cowboy", value);
+	   }else
+	   {
+		   String contentType = response.header("Content-Type");
+		System.out.println("Content-Type value: " + contentType);
+		Assert.assertEquals("application/json", contentType);
+	   } 
+		
+	}
 	
 }
