@@ -19,7 +19,7 @@ public class StepDefinitions {
 	RequestSpecification request;
 	public static Response respon;
 	int actualresponseCode;
-	int statuscode;
+	public static int statuscode;
 	public static List<Integer> programIdList = new ArrayList<>();;
 
 	@Given("API url {string}")
@@ -53,4 +53,26 @@ public class StepDefinitions {
 		Assert.assertEquals(code, statuscode);
 
 	}
+	@When("^User modified body programname as (.*) program description as(.*) and program status as(.*)and send  request with (.*)$")
+	public void user_modified_body_programname_as_pgmname_program_description_as_pgmdesc_and_program_status_as_status2_and_send_request_with_endpoint2(String progname, String pgmDesc, String status2, String endpoint2
+) {
+		String requestbody = "{\r\n" + "\"programName\": \"" + progname + "\",\r\n" + "\"programDescription\": \""
+				+ pgmDesc + "\",\r\n" + "\"programStatus\": \"" + status2 + "\",\r\n" + "\"creationTime\": \""
+				+ LocalDateTime.now() + "\",\r\n" + "\"lastModTime\": \"" + LocalDateTime.now() + "\"\r\n" + "}";
+		System.out.println(requestbody);
+		RequestSpecification httpRequest = RestAssured.given();
+		httpRequest.header("Content-Type", "application/json");
+		
+		respon = httpRequest.body(requestbody).put(endpoint2 + programIdList.get(0));
+		statuscode = respon.getStatusCode();
+		System.out.println("Responce status code is:" + statuscode);
+
+	}
+
+	@Then("^user should get valid response (.*)$")
+	public void user_should_get_valid_response_statuscode(int code) {
+		Assert.assertEquals(code, statuscode);
+	}
+	
+	
 }
