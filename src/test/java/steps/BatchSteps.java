@@ -109,10 +109,7 @@ public class BatchSteps {
 			String bodyStringValue = body.asString();
 			Assert.assertTrue(bodyStringValue.contains("deleted Successfully!"));
 
-
 		}
 	}
 
 }
-
-
