@@ -20,7 +20,8 @@ public class StepDefinitions {
 	public static Response respon;
 	int actualresponseCode;
 	public static int statuscode;
-	public static List<Integer> programIdList = new ArrayList<>();;
+	public static List<Integer> programIdList = new ArrayList<>();
+	
 
 	@Given("API url {string}")
 	public void api_url(String url) {

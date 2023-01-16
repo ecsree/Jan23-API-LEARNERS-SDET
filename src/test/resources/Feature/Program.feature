@@ -14,7 +14,7 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
 
 
 
-   Scenario Outline: Update Program by Id
+  Scenario Outline: Update Program by Id
     When User modified body programname as <pgmname> program description as<pgmdesc> and program status as<status2>and send  request with <endpoint2>
     Then user should get valid response <statuscode>
       
