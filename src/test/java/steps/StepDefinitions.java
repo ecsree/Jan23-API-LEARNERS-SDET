@@ -119,11 +119,8 @@ public class StepDefinitions {
 		respon = httprequest.when().delete(endpoint+ programIdList.get(0));	
 		respon = httprequest.when().delete(endpoint+ programIdList.get(1));	
 		statuscode = respon.getStatusCode();
-		
-		
-		
-
-	}
+			
+		}
 
 	@Then("^User get valid response (.*)$")
 	public void user_get_valid_response_statuscode(int code) {

@@ -25,12 +25,13 @@ public class BatchSteps {
 	public static List<Integer> batchIdList = new ArrayList<>();
 	public static List<Response> batchResponseList = new ArrayList<>();
 	public static List<Response> batchDeletemsgList = new ArrayList<>();
-
+		
 	@Given("A valid API url {string}")
 	public void api_url(String url) {
 		RestAssured.baseURI = url;
 	}
 
+                          
 	@When("^User sent payload with batch_name as(.*) batch_description as(.*) and batch status as(.*) and send  request with (.*)$")
 	public void user_sent_payload_with_batch_name_as_batch_name_batch_description_as_desc_and_batch_status_as_status_and_send_request_with_endpoint(String batchName, String desc, String status, String endpoint) {
 
@@ -56,8 +57,8 @@ public class BatchSteps {
 		System.out.println("batchIdList = " + batchIdList);
 	}
 
-	@Then("^The new Program is Created (.*)$")
-	public void the_new_program_is_created(int statusCode) {
+	@Then("^The new batch is Created (.*)$")
+	public void the_new_batch_is_created(int statusCode) {
 		actualresponseCode = response.then().extract().statusCode();
 		System.out.println("Response status code is:" + statusCode);
 		Assert.assertEquals(statusCode, actualresponseCode);
@@ -82,8 +83,8 @@ public class BatchSteps {
 		System.out.println("Response Body is => " + response.asString());
 	}
 	}
-	@Then("^new Program is Created (.*)$")
-	public void new_program_is_created_statuscode(int code) {
+	@Then("^batch is Updated (.*)$")
+	public void batch_is_updated(int code) {
 		Assert.assertEquals(statuscode, actualresponseCode);
 	}
 

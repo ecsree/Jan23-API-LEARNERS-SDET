@@ -10,8 +10,8 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
 
     Examples: 
       | Programname                | Desc                   | Status | Statuscode | Endpoint     |
-      | Jan23-API_LEARNERS-SDET-511005 | API_LEARNERS are smart | Active |        201 | /saveprogram |
-      | Jan23-API_LEARNERS-SDET-523008 | Application progming   | Active |        201 | /saveprogram |
+      | Jan23-API_LEARNERS-SDET-500 | API_LEARNERS are smart | Active |        201 | /saveprogram |
+      | Jan23-API_LEARNERS-SDET-501 | Application progming   | Active |        201 | /saveprogram |
 
 
 
@@ -24,7 +24,7 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
       Examples: 
 
       | pgmname | pgmdesc        | status2 | endpoint2    |statuscode|
-      | Jan23-API_LEARNERS-SDET-777771234 | java is not simple | Active  | /putprogram/ |200|
+      | Jan23-API_LEARNERS-SDET-700 | java is not simple | Active  | /putprogram/ |200|
       
       
       
@@ -35,7 +35,7 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
       
      Examples: 
      | pgmname | pgmdesc        | status2 | endpoint3   |statuscode|
-     | Python2532234 | java is not simple | Active  | /program/ |200|
+     | Jan23-API_LEARNERS-SDET-66 | java is not simple | Active  | /program/ |200|
       
       
      Scenario Outline: Delete Program by Id
