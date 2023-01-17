@@ -12,6 +12,14 @@ Feature: Batch
       | Jan23-API_Learners-SDET-SDET30 | RestAPI Batch01 | Active | /batches |        201 |
       | Jan23-API_Learners-SDET-SDET31 | Postman Batch01 | Active | /batches |        201 |
 
+  Scenario Outline: update the batch by id
+    When User send payload with batch_name as <Name> batch_description as<desc> and batch status as<status> and send  request with <endpoint>
+    Then new Program is Created <statuscode>
+
+    Examples: 
+      | Name                            | desc             | status | endpoint  | statuscode |
+      | Jan23-API_Learners-SDET-SDET411 | RestAPI Batch009 | Active | /batches/ |        200 |
+
   Scenario: Get Batches by batchId
     When User send a request with end point
     Then user should get valid response

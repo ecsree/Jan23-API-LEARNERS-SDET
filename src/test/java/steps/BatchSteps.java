@@ -65,6 +65,27 @@ public class BatchSteps {
 		System.out.println("Response Body is =>  " + response.asString());
 
 	}
+	
+	@When("^User send payload with batch_name as (.*) batch_description as(.*) and batch status as(.*) and send  request with (.*)$")
+	public void user_send_payload_with_batch_name_as_jan23_api_learners_sdet_sdet411_batch_description_as_rest_api_batch009_and_batch_status_as_active_and_send_request_with_batches(String name, String desc, String status, String endpoint) { {
+		String payload ="{\r\n"
+				+ "\"batchName\": \""+name+"\",\r\n"
+				+ "\"batchDescription\": \""+desc+"\",\r\n"
+				+ "\"batchStatus\": \""+status+"\",\r\n"
+				+ "\"batchNoOfClasses\": 12,\r\n"
+				+ "\"programId\": 1939\r\n"
+				+ "}\r\n"
+				+ "}";
+		RequestSpecification httpRequest = RestAssured.given();
+		httpRequest.header("Content-Type", "application/json");
+		response = httpRequest.body(payload).put(endpoint + batchIdList.get(0));
+		System.out.println("Response Body is => " + response.asString());
+	}
+	}
+	@Then("^new Program is Created (.*)$")
+	public void new_program_is_created_statuscode(int code) {
+		Assert.assertEquals(statuscode, actualresponseCode);
+	}
 
 	@When("User send a request with end point")
 	public void user_send_a_request_with_end_point() {
