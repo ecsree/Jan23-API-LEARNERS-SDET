@@ -2,6 +2,7 @@ Feature: Program
 Background:
 Given API url "https://lms-backend-service.herokuapp.com/lms/"
 
+
   Scenario Outline: Save Program
   
     When User set body with program_name as<Programname> program_description as<Desc> and program status as<Status> and send  request with <Endpoint>
@@ -9,8 +10,9 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
 
     Examples: 
       | Programname                | Desc                   | Status | Statuscode | Endpoint     |
-      | Jan23-API_LEARNERS-SDET-7771234 | API_LEARNERS are smart | Active |        201 | /saveprogram |
-      | Jan23-API_LEARNERS-SDET-8881234 | Application progming   | Active |        201 | /saveprogram |
+      | Jan23-API_LEARNERS-SDET-511005 | API_LEARNERS are smart | Active |        201 | /saveprogram |
+      | Jan23-API_LEARNERS-SDET-523008 | Application progming   | Active |        201 | /saveprogram |
+
 
 
 
@@ -20,6 +22,7 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
     Then user should get valid response <statuscode>
       
       Examples: 
+
       | pgmname | pgmdesc        | status2 | endpoint2    |statuscode|
       | Jan23-API_LEARNERS-SDET-777771234 | java is not simple | Active  | /putprogram/ |200|
       
@@ -44,3 +47,11 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
      | endpoint   |statuscode|
    		| /deletebyprogid/ |200|
       
+
+      
+      Scenario: To get details of all programe using GetAllProgram API
+        Given User enter  endpoints
+        When User call GetAllProgramAPI with Get HTTP method
+        Then response API call got success with status code 200
+        And validate the response header : "Server" is "Cowboy" 
+        And validate the response header : "Content-Type" is "application/json"
