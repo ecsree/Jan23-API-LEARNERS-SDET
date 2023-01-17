@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "./src/test/resources/Feature/Program.feature",
+		features = "./src/test/resources/Feature/Batch.feature",
 		glue = {"steps"},
 		dryRun=false,
 		monochrome=true,
