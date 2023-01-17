@@ -98,11 +98,10 @@ public class StepDefinitions {
 		Assert.assertEquals(code, statuscode);
 	}
 //Deleting Program Id
-	
+	    
 	@When("^User deletes the program with request (.*)$")
 	public void user_deletes_the_program_with_request_endpoint(String endpoint) {
 		
-
 		RequestSpecification httprequest = RestAssured.given();
 		httprequest.header("Content-Type", "application/json");
 		System.out.println(programIdList);
