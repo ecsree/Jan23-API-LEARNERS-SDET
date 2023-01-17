@@ -1,6 +1,5 @@
 Feature: Batch
 
-
   Background: 
     Given A valid API url "https://lms-backend-service.herokuapp.com/lms/"
 

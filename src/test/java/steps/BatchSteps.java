@@ -95,7 +95,6 @@ public class BatchSteps {
 			response = rs.when().get("/batches/batchId/"+batchIdList.get(i));
 			System.out.println(response.asString());
 			batchResponseList.add(response);
-
 		}
 	}
 
@@ -128,8 +127,6 @@ public class BatchSteps {
 			ResponseBody body = response.getBody();
 			String bodyStringValue = body.asString();
 			Assert.assertTrue(bodyStringValue.contains("deleted Successfully!"));
-
 		}
 	}
-
 }
