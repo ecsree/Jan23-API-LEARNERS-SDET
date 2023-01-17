@@ -93,7 +93,6 @@ public class BatchSteps {
 		for(int i=0;i<batchIdList.size();i++) {
 			RequestSpecification rs = RestAssured.given();
 			response = rs.when().get("/batches/batchId/"+batchIdList.get(i));
-			
 			System.out.println(response.asString());
 			batchResponseList.add(response);
 
