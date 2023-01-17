@@ -27,6 +27,7 @@ public class StepDefinitions {
 	int actualresponseCode;
 	public static int statuscode;
 	public static List<Integer> programIdList = new ArrayList<>();
+	public static List<String> programNameList = new ArrayList<>();
 	public static RequestSpecification res ;
 	public  ResponseSpecification resspec;
 	public  Response response;
@@ -55,6 +56,9 @@ public class StepDefinitions {
 		JSONObject requestProgram = (JSONObject) res;
 		programIdList.add(Integer.parseInt(requestProgram.get("programId").toString()));
 		System.out.println("programIdList = " + programIdList);
+		programNameList.add(programname);
+
+		
 	}
 	
 	@Then("^The new Program is Created  (.*)$")
@@ -73,7 +77,7 @@ public class StepDefinitions {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
 		
-		respon = httpRequest.body(requestbody).put(endpoint2 + programIdList.get(0));
+		respon = httpRequest.body(requestbody).put(endpoint2 + programIdList.get(1));
 		statuscode = respon.getStatusCode();
 		System.out.println("Responce status code is:" + statuscode);
 
@@ -84,6 +88,47 @@ public class StepDefinitions {
 		Assert.assertEquals(code, statuscode);
 	}
 	
+
+	@When("^User modifies body programname as (.*) program description as(.*) and program status as(.*)and send  request with (.*)$")
+	public void user_modifies_body_programname_as_pgmname_program_description_as_pgmdesc_and_program_status_as_status2_and_send_request_with_endpoint3(String progname, String pgmDesc, String status2, String endpoint3 ) {
+		String requestbody = "{\r\n" + "\"programName\": \"" + progname + "\",\r\n" + "\"programDescription\": \""
+				+ pgmDesc + "\",\r\n" + "\"programStatus\": \"" + status2 + "\",\r\n" + "\"creationTime\": \""
+				+ LocalDateTime.now() + "\",\r\n" + "\"lastModTime\": \"" + LocalDateTime.now() + "\"\r\n" + "}";
+		System.out.println(requestbody);
+		RequestSpecification httpRequest = RestAssured.given();
+		httpRequest.header("Content-Type", "application/json");
+		System.out.println(programNameList);
+		respon = httpRequest.body(requestbody).put(endpoint3 +programNameList.get(0));
+		statuscode = respon.getStatusCode();
+		System.out.println("Responce status code is:" + statuscode);
+				
+	}
+
+	@Then("^user gets valid response (.*)$")
+	public void user_gets_valid_response_statuscode(int code) {
+		Assert.assertEquals(code, statuscode);
+	}
+//Deleting Program Id
+	    
+	@When("^User deletes the program with request (.*)$")
+	public void user_deletes_the_program_with_request_endpoint(String endpoint) {
+		
+		RequestSpecification httprequest = RestAssured.given();
+		httprequest.header("Content-Type", "application/json");
+		System.out.println(programIdList);
+		respon = httprequest.when().delete(endpoint+ programIdList.get(0));	
+		respon = httprequest.when().delete(endpoint+ programIdList.get(1));	
+		statuscode = respon.getStatusCode();
+		
+		
+		
+
+	}
+
+	@Then("^User get valid response (.*)$")
+	public void user_get_valid_response_statuscode(int code) {
+		Assert.assertEquals(code, statuscode);
+	}
 	@Given("User enter  endpoints")
 	public void user_enter_endpoints() 
 	{
@@ -119,4 +164,5 @@ public class StepDefinitions {
 		
 	}
 	
+
 }

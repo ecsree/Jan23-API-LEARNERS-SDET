@@ -15,14 +15,39 @@ Given API url "https://lms-backend-service.herokuapp.com/lms/"
 
 
 
-  Scenario Outline: Update Program by Id
+
+  Scenario Outline: Update Program by Id 
+  
     When User modified body programname as <pgmname> program description as<pgmdesc> and program status as<status2>and send  request with <endpoint2>
     Then user should get valid response <statuscode>
       
       Examples: 
-      | pgmname 											| pgmdesc        | status2 | endpoint2    |statuscode|
-      | Jan23-API_LEARNERS-SDET-51100  | java is not simple | Active  | /putprogram/ |200|
+
+      | pgmname | pgmdesc        | status2 | endpoint2    |statuscode|
+      | Jan23-API_LEARNERS-SDET-777771234 | java is not simple | Active  | /putprogram/ |200|
       
+      
+      
+     Scenario Outline: Update Program by name 
+      
+    When User modifies body programname as <pgmname> program description as<pgmdesc> and program status as<status2>and send  request with <endpoint3>
+    Then user gets valid response <statuscode>
+      
+     Examples: 
+     | pgmname | pgmdesc        | status2 | endpoint3   |statuscode|
+     | Python2532234 | java is not simple | Active  | /program/ |200|
+      
+      
+     Scenario Outline: Delete Program by Id
+     
+     When User deletes the program with request <endpoint>
+     Then User get valid response <statuscode>
+     
+      Examples: 
+     | endpoint   |statuscode|
+   		| /deletebyprogid/ |200|
+      
+
       
       Scenario: To get details of all programe using GetAllProgram API
         Given User enter  endpoints
