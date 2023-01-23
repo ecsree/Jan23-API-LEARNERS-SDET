@@ -19,7 +19,7 @@ Feature: Batch
     Examples: 
       | Name                            | desc             | status | endpoint  | statuscode |
       | Jan23-API_Learners-SDET-SDET411 | RestAPI Batch009 | Active | /batches/ |        200 |
-
+#
   Scenario: Get Batches by batchId
     When User send a request with end point
     Then user should get valid response
